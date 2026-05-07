@@ -1,0 +1,11 @@
+{% if task_instruction %}{{ task_instruction }}
+
+{% endif -%}
+Assign the following document to exactly one of these labels (copy the label text exactly):
+{% for lab in label_names -%}
+- {{ lab }}
+{% endfor %}
+Document to classify:
+{{ target_text }}
+
+{% if answer_preamble %}{{ answer_preamble }}{% else %}Answer with one label from the list above only.{% endif %}

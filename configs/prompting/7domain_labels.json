@@ -1,0 +1,14 @@
+{
+  "description": "Balanced nvidia_domain subset used in multilingual-document experiments (English `translated` text).",
+  "label_column": "nvidia_domain",
+  "text_column": "translated",
+  "labels": [
+    "Arts_and_Entertainment",
+    "Law_and_Government",
+    "News",
+    "People_and_Society",
+    "Sensitive_Subjects",
+    "Sports",
+    "Travel_and_Transportation"
+  ]
+}

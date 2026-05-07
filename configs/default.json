@@ -1,0 +1,76 @@
+{
+  "seed": 42,
+  "paths": {
+    "data_dir": "data",
+    "results_dir": "results",
+    "models_dir": "models",
+    "checkpoints_subdir": "checkpoints"
+  },
+  "bbc": {
+    "labels": [
+      "business",
+      "entertainment",
+      "politics",
+      "sport",
+      "tech"
+    ],
+    "subdir": "bbc"
+  },
+  "bert": {
+    "model_name": "bert-base-uncased",
+    "max_length": 512,
+    "best_head_weights": "models/checkpoints/best_bbc_bert_cls_head.pt"
+  },
+  "gpt2": {
+    "124m": {
+      "pretrained": "gpt2",
+      "max_length": 768,
+      "max_new_tokens": 2,
+      "finetune_model_subdir": "gpt2_bbc",
+      "eval_tuned_subdir": "gpt2_bbc_tuned",
+      "preds_csv": "gpt2_bbc_preds.csv"
+    },
+    "355m": {
+      "pretrained": "gpt2-medium",
+      "local_subdir": "gpt2_medium",
+      "finetune_model_subdir": "gpt2_medium_bbc",
+      "max_length": 768,
+      "max_new_tokens": 2
+    },
+    "training": {
+      "per_device_train_batch_size": 1,
+      "per_device_eval_batch_size": 1,
+      "gradient_accumulation_steps": 8,
+      "num_train_epochs": 6,
+      "learning_rate": 5e-5,
+      "warmup_ratio": 0.06,
+      "weight_decay": 0.01,
+      "logging_steps": 25,
+      "save_total_limit": 2
+    }
+  },
+  "baselines": {
+    "cv_splits": 5,
+    "tasks": [
+      {
+        "name": "politifact_214",
+        "path": "fakenewsnet/politifact_214.csv"
+      },
+      {
+        "name": "employee_reviews_1000",
+        "path": "employee_reviews/employee_reviews_1000_balanced.csv"
+      }
+    ],
+    "summary_csv": "ml_baselines_results.csv",
+    "detail_json_pattern": "ml_baselines_{task_name}.json"
+  },
+  "fakenewsnet": {
+    "fake_csv": "fakenewsnet/politifact_fake.csv",
+    "real_csv": "fakenewsnet/politifact_real.csv",
+    "out_csv": "fakenewsnet/politifact_214.csv"
+  },
+  "employee_reviews": {
+    "out_csv": "employee_reviews/employee_reviews_1000_balanced.csv",
+    "hf_dataset": "kmrmanish/Employees_Reviews_Dataset"
+  }
+}

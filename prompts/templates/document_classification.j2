@@ -1,0 +1,24 @@
+{# Dataset-agnostic document classification — variables: task_instruction, answer_preamble, label_names, examples, target_text #}
+{% if task_instruction %}{{ task_instruction }}
+
+{% endif -%}
+Assign the following document to exactly one of these labels (copy the label text exactly):
+{% for lab in label_names -%}
+- {{ lab }}
+{% endfor %}
+
+{% if examples %}
+Here are labeled examples from the training set:
+{% for ex in examples -%}
+---
+Document:
+{{ ex.text }}
+
+Label: {{ ex.label }}
+{% endfor %}
+---
+{% endif -%}
+Document to classify:
+{{ target_text }}
+
+{% if answer_preamble %}{{ answer_preamble }}{% else %}Answer with one label from the list above only.{% endif %}
